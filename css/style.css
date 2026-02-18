@@ -81,9 +81,16 @@ main {
 }
 
 #calculations {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
     margin-right: 10px;
     font-size: 20px;
     font-weight: bold;
+}
+
+#calculations p {
+    white-space: nowrap;
 }
 
 #calculator-bottom {
