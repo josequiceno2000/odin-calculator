@@ -48,7 +48,7 @@ const numberButtons = document.querySelector("#numbers");
 numberButtons.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains("number-button")) {
         let numberToDisplay = event.target.textContent;
-        console.log(numberToDisplay);
-        display.textContent = numberToDisplay;
+        
+        display.textContent = `${numberToDisplay}${display.textContent}`;
     }
 })
