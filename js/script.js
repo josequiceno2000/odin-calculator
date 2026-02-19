@@ -137,6 +137,7 @@ document.addEventListener('keydown', function(event) {
         "1", "2", "3", "4", "5",
         "6", "7", "8", "9", "0"
     ];
+
     let pressed = event.key;
     console.log(`Key pressed: `, event.key);
 
@@ -148,5 +149,8 @@ document.addEventListener('keydown', function(event) {
         } else {
             display.textContent += pressed;
         }
+    } else if (pressed === ".") {
+        if (display.textContent.includes(".")) return;
+        display.textContent += pressed;
     }
 });
