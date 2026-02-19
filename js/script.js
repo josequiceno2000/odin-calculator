@@ -49,6 +49,10 @@ numberButtons.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains("number-button")) {
         let numberToDisplay = event.target.textContent;
         
-        display.textContent = `${numberToDisplay}${display.textContent}`;
+        if (display.textContent === `0`) {
+            display.textContent = numberToDisplay;
+        } else {
+            display.textContent = `${display.textContent}${numberToDisplay}`;
+        }
     }
 })
