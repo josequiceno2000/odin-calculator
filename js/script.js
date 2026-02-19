@@ -78,6 +78,18 @@ operationButtons.addEventListener('click', function(event) {
 
     const clickedOperator = event.target.textContent;
 
+    if (clickedOperator === "DEL") {
+        if (display.textContent === "0") {
+            return;
+        } else if (display.textContent.length === 1) {
+            display.textContent = "0";
+            return;
+        } else {
+            display.textContent = display.textContent.slice(0, -1);
+            return;
+        }
+    }
+
     if (operator !== null && !shouldResetDisplay) {
         let secondNumber = parseFloat(display.textContent);
         firstNumber = operate(firstNumber, operator, secondNumber);
@@ -113,6 +125,8 @@ numberButtons.addEventListener('click', function(event) {
     
     
 })
+
+
 
 // --- Helper Function ---
 function roundResult(number) {
