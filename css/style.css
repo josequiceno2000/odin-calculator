@@ -85,7 +85,10 @@ main {
     border-radius: 6px 0px 0px 6px;
 }
 
-#cancel
+#cancel:hover {
+    cursor: pointer;
+    color: rgb(10, 110, 122);
+}
 
 #calculations {
     display: flex;
