@@ -141,10 +141,15 @@ main {
 }
 
 #delete {
+    color: rgb(103, 5, 5);
     background-color: rgb(255, 140, 140);
     border: .2em solid rgba(127, 29, 29, 0.417);
     font-size: 1em;
     font-weight: 800;
+}
+
+#delete:hover {
+    color: rgb(145, 8, 8);
 }
 
 #operations {
