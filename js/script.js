@@ -45,6 +45,14 @@ const operate = function(a, operator, b) {
 const display = document.querySelector("#calculations p")
 const numberButtons = document.querySelector("#numbers");
 const operationButtons = document.querySelector("#operations")
+const cancelButton = document.querySelector("#cancel");
+
+cancelButton.addEventListener('click', function(event) {
+    display.textContent = "0";
+    firstNumber = undefined;
+    operator = undefined;
+    secondNumber = undefined;
+})
 
 numberButtons.addEventListener('click', function(event) {
     if (event.target && event.target.classList.contains("number-button")) {

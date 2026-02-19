@@ -85,6 +85,8 @@ main {
     border-radius: 6px 0px 0px 6px;
 }
 
+#cancel
+
 #calculations {
     display: flex;
     justify-content: flex-end;
