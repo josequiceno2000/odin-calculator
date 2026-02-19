@@ -1,3 +1,4 @@
+// --- Basic Operations ---
 const add = function(a, b) {
     return a + b;
 }
@@ -18,10 +19,7 @@ const divide = function(a, b) {
     }
 }
 
-let firstNumber = null;
-let operator = null;
-let shouldResetDisplay = false;
-
+// --- Operation Function ---
 const operate = function(a, operator, b) {
     switch (operator) {
         case "+":
@@ -38,6 +36,13 @@ const operate = function(a, operator, b) {
             break;
     }
 }
+
+// --- Initial Variables ---
+let firstNumber = null;
+let operator = null;
+let shouldResetDisplay = false;
+
+// --- DOM Variables ---
 
 const display = document.querySelector("#calculations p")
 const numberButtons = document.querySelector("#numbers");
@@ -65,7 +70,6 @@ numberButtons.addEventListener('click', function(event) {
     }
 })
 
-
 // --- Operation Buttons ---
 operationButtons.addEventListener('click', function(event) {
     if (!event.target.classList.contains("operation-button")) return;
@@ -84,6 +88,7 @@ operationButtons.addEventListener('click', function(event) {
     shouldResetDisplay = true;
 })
 
+// --- Equals Button ---
 numberButtons.addEventListener('click', function(event) {
     if (!event.target.classList.contains("operation-button")) return;
     const clickedOperator = event.target.textContent;
@@ -91,11 +96,8 @@ numberButtons.addEventListener('click', function(event) {
     if (firstNumber === null || operator === null) return;
 
     let secondNumber = parseFloat(display.textContent);
-    console.log(firstNumber);
-    console.log(operator);
-    console.log(secondNumber);
+
     let result = operate(firstNumber, operator, secondNumber);
-    console.log(result);
 
     if (typeof result === "string") {
         display.textContent = result;
@@ -110,6 +112,7 @@ numberButtons.addEventListener('click', function(event) {
     
 })
 
+// --- Helper Function ---
 function roundResult(number) {
     return Math.round(number * 1000) / 1000;
  }
