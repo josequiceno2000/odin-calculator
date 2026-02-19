@@ -105,7 +105,6 @@ operationButtons.addEventListener('click', function(event) {
 // --- Equals Button ---
 numberButtons.addEventListener('click', function(event) {
     if (!event.target.classList.contains("operation-button")) return;
-    const clickedOperator = event.target.textContent;
 
     if (firstNumber === null || operator === null) return;
 
@@ -138,6 +137,10 @@ document.addEventListener('keydown', function(event) {
         "6", "7", "8", "9", "0"
     ];
 
+    let operations = [
+        "Delete", "Backspace", "+", "-", "*", "/"
+    ];
+
     let pressed = event.key;
     console.log(`Key pressed: `, event.key);
 
@@ -152,5 +155,45 @@ document.addEventListener('keydown', function(event) {
     } else if (pressed === ".") {
         if (display.textContent.includes(".")) return;
         display.textContent += pressed;
+    }  else if (operations.includes(pressed)) {
+        if (pressed === "Delete" || pressed === "Backspace") {
+            if (display.textContent === "0") {
+                return;
+            } else if (display.textContent.length === 1) {
+                display.textContent = "0";
+                return;
+            } else {
+                display.textContent = display.textContent.slice(0, -1);
+                return;
+            }
+        }
+
+        if (operator !== null && !shouldResetDisplay) {
+            let secondNumber = parseFloat(display.textContent);
+            firstNumber = operate(firstNumber, operator, secondNumber);
+            display.textContent = roundResult(firstNumber);
+        } else {
+            firstNumber= parseFloat(display.textContent);
+        }
+
+        operator = clickedOperator;
+        shouldResetDisplay = true;
+
+    } else if (pressed === "=") {
+        if (firstNumber === null || operator === null) return;
+
+        let secondNumber = parseFloat(display.textContent);
+
+        let result = operate(firstNumber, operator, secondNumber);
+
+        if (typeof result === "string") {
+            display.textContent = result;
+            return;
+        } else {
+            display.textContent = roundResult(result);
+            firstNumber = null;
+            operator = null;
+            return;
+        }
     }
 });
