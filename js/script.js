@@ -126,9 +126,9 @@ numberButtons.addEventListener('click', function(event) {
     
 })
 
-
-
 // --- Helper Function ---
 function roundResult(number) {
     return Math.round(number * 100) / 100;
  }
+
+//  --- Keyboard Support ---
