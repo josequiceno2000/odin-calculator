@@ -24,3 +24,21 @@ const divide = function(a, b) {
 let firstNumber;
 let operator;
 let secondNumber;
+
+const operate = function(a, operator, b) {
+    switch (operator) {
+        case "+":
+            return add(a, b);
+            break;
+        case "-":
+            return subtract(a, b);
+            break;
+        case "*":
+            return multiply(a, b);
+            break;
+        case "/":
+            return divide(a, b);
+            break;
+    }
+}
+
