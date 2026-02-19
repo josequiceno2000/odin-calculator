@@ -60,6 +60,8 @@ cancelButton.addEventListener('click', function(event) {
 numberButtons.addEventListener('click', function(event) {
     if (!event.target.classList.contains("number-button")) return;
 
+    if (event.target.id === "dot" && display.textContent.includes(".")) return;
+
     let numberToDisplay = event.target.textContent;
 
     if (display.textContent === "0" || shouldResetDisplay) {
@@ -114,5 +116,5 @@ numberButtons.addEventListener('click', function(event) {
 
 // --- Helper Function ---
 function roundResult(number) {
-    return Math.round(number * 1000) / 1000;
+    return Math.round(number * 100) / 100;
  }
