@@ -166,20 +166,32 @@ document.addEventListener('keydown', function(event) {
                 display.textContent = display.textContent.slice(0, -1);
                 return;
             }
-        }
-
-        if (operator !== null && !shouldResetDisplay) {
-            let secondNumber = parseFloat(display.textContent);
-            firstNumber = operate(firstNumber, operator, secondNumber);
-            display.textContent = roundResult(firstNumber);
         } else {
-            firstNumber= parseFloat(display.textContent);
+            if (operator !== null && !shouldResetDisplay) {
+                let secondNumber = parseFloat(display.textContent);
+                firstNumber = operate(firstNumber, operator, secondNumber);
+                display.textContent = roundResult(firstNumber);
+            } else {
+                firstNumber= parseFloat(display.textContent);
+            }
+
+            if (pressed === "-") {
+                operator = "−";
+            } else if (pressed === "*") {
+                operator = "×";
+            } else if (pressed === "/") {
+                operator = "÷";
+            } else if (pressed === "+") {
+                operator = "+";
+            }
+            
+            shouldResetDisplay = true;
+
         }
 
-        operator = clickedOperator;
-        shouldResetDisplay = true;
+        
 
-    } else if (pressed === "=") {
+    } else if (pressed === "Enter") {
         if (firstNumber === null || operator === null) return;
 
         let secondNumber = parseFloat(display.textContent);
