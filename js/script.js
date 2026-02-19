@@ -11,19 +11,16 @@ const multiply = function(a, b) {
 }
 
 const divide = function(a, b) {
-    try {
-        if (b === 0) {
-            throw EvalError(`Nice try a-hole!`);
-        }
-        return a / b;
-    } catch (error) {
-        console.log("An error occured:", error.message)
+    if (b === 0) {
+        alert("Nice try a-hole!");
+        return "Error";
     }
+    return a / b;
 }
 
-let firstNumber;
-let operator;
-let secondNumber;
+let firstNumber = null;
+let operator = null;
+let shouldResetDisplay = false;
 
 const operate = function(a, operator, b) {
     switch (operator) {
@@ -33,7 +30,7 @@ const operate = function(a, operator, b) {
         case "−":
             return subtract(a, b);
             break;
-        case "*":
+        case "×":
             return multiply(a, b);
             break;
         case "÷":
@@ -47,42 +44,62 @@ const numberButtons = document.querySelector("#numbers");
 const operationButtons = document.querySelector("#operations")
 const cancelButton = document.querySelector("#cancel");
 
+// --- Cancel Button ---
 cancelButton.addEventListener('click', function(event) {
     display.textContent = "0";
-    firstNumber = undefined;
-    operator = undefined;
-    secondNumber = undefined;
+    firstNumber = null;
+    operator = null;
 })
 
+// --- Number Buttons ---
 numberButtons.addEventListener('click', function(event) {
-    if (event.target && event.target.classList.contains("number-button")) {
-        let numberToDisplay = event.target.textContent;
-        
-        if (display.textContent === `0`) {
-            display.textContent = numberToDisplay;
-        } else {
-            display.textContent = `${display.textContent}${numberToDisplay}`;
-        }
+    if (!event.target.classList.contains("number-button")) return;
+
+    let numberToDisplay = event.target.textContent;
+
+    if (display.textContent === "0" || shouldResetDisplay) {
+        display.textContent = numberToDisplay;
+        shouldResetDisplay = false;
+    } else {
+        display.textContent += numberToDisplay;
     }
 })
 
+
+// --- Operation Buttons ---
 operationButtons.addEventListener('click', function(event) {
-    if (event.target && event.target.classList.contains("operation-button")) {
-        firstNumber = parseFloat(display.textContent);
-        console.log(firstNumber);
-        display.textContent = 0;
-        operator = event.target.textContent;
-        console.log(operator);
+    if (!event.target.classList.contains("operation-button")) return;
+
+    const clickedOperator = event.target.textContent;
+
+    if (operator !== null && !shouldResetDisplay) {
+        let secondNumber = parseFloat(display.textContent);
+        firstNumber = operate(firstNumber, operator, secondNumber);
+        display.textContent = roundResult(firstNumber);
+    } else {
+        firstNumber= parseFloat(display.textContent);
     }
+
+    operator = clickedOperator;
+    shouldResetDisplay = true;
 })
 
 numberButtons.addEventListener('click', function(event) {
-    if (event.target && event.target.classList.contains("operation-button")) {
-        secondNumber = parseFloat(display.textContent);
-        console.log(secondNumber);
-        let result = operate(firstNumber, operator, secondNumber);
-        console.log(result);  
-        display.textContent = result.toFixed(2);
-    }
+    if (!event.target.classList.contains("operation-button")) return;
+    const clickedOperator = event.target.textContent;
+
+    if (firstNumber === null || operator === null) return;
+
+    let secondNumber = parseFloat(display.textContent);
+    let result = operate(firstNumber, operator, secondNumber);
+
+    display.textContent = roundResult(result);
+    firstNumber = null;
+    operator = null;
+    return;
+    
 })
 
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000;
+ }
