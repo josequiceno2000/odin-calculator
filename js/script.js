@@ -12,10 +12,10 @@ const multiply = function(a, b) {
 
 const divide = function(a, b) {
     if (b === 0) {
-        alert("Nice try a-hole!");
-        return "Error";
+        return "Nice try, a-hole!";
+    } else {
+        return a / b;
     }
-    return a / b;
 }
 
 let firstNumber = null;
@@ -91,12 +91,22 @@ numberButtons.addEventListener('click', function(event) {
     if (firstNumber === null || operator === null) return;
 
     let secondNumber = parseFloat(display.textContent);
+    console.log(firstNumber);
+    console.log(operator);
+    console.log(secondNumber);
     let result = operate(firstNumber, operator, secondNumber);
+    console.log(result);
 
-    display.textContent = roundResult(result);
-    firstNumber = null;
-    operator = null;
-    return;
+    if (typeof result === "string") {
+        display.textContent = result;
+        return;
+    } else {
+        display.textContent = roundResult(result);
+        firstNumber = null;
+        operator = null;
+        return;
+    }
+    
     
 })
 
