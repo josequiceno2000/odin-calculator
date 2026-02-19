@@ -54,7 +54,7 @@ cancelButton.addEventListener('click', function(event) {
     display.textContent = "0";
     firstNumber = null;
     operator = null;
-})
+});
 
 // --- Number Buttons ---
 numberButtons.addEventListener('click', function(event) {
@@ -70,7 +70,7 @@ numberButtons.addEventListener('click', function(event) {
     } else {
         display.textContent += numberToDisplay;
     }
-})
+});
 
 // --- Operation Buttons ---
 operationButtons.addEventListener('click', function(event) {
@@ -100,7 +100,7 @@ operationButtons.addEventListener('click', function(event) {
 
     operator = clickedOperator;
     shouldResetDisplay = true;
-})
+});
 
 // --- Equals Button ---
 numberButtons.addEventListener('click', function(event) {
@@ -124,7 +124,7 @@ numberButtons.addEventListener('click', function(event) {
     }
     
     
-})
+});
 
 // --- Helper Function ---
 function roundResult(number) {
@@ -132,3 +132,21 @@ function roundResult(number) {
  }
 
 //  --- Keyboard Support ---
+document.addEventListener('keydown', function(event) {
+    let numbers = [
+        "1", "2", "3", "4", "5",
+        "6", "7", "8", "9", "0"
+    ];
+    let pressed = event.key;
+    console.log(`Key pressed: `, event.key);
+
+    if (numbers.includes(pressed)) {
+        console.log(`${pressed} is a number!`)
+        if (display.textContent === "0" || shouldResetDisplay) {
+            display.textContent = pressed;
+            shouldResetDisplay = false;
+        } else {
+            display.textContent += pressed;
+        }
+    }
+});
