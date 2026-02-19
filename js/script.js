@@ -77,3 +77,4 @@ numberButtons.addEventListener('click', function(event) {
         display.textContent = result.toFixed(2);
     }
 })
+

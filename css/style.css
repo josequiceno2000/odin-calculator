@@ -53,12 +53,12 @@ main {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: gray;
+    background-image: linear-gradient(#001519ea, #0e5c6d78);
     width: 44%;
     max-width: 600px;
     min-height: 100px;
     padding: 100px 0 20px 0;
-    border: 4px solid rgb(189, 189, 189);
+    border: 6px solid rgba(189, 189, 189, 0.078);
     border-radius: 20px;
     box-shadow: 4px 10px 40px 6px;
 }
@@ -67,21 +67,21 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(31, 128, 255);
+    background-color: rgb(255, 255, 255);
     width: 90%;
     padding: 0;
-    border: 4px solid rgb(42, 91, 124);
+    border: 4px solid #063943;
     border-radius: 10px;
     margin: 0 auto;
 }
 
 #cancel {
-    color: rgb(200, 0, 0);
-    background-color: rgb(252, 137, 137);
+    color: #063943ea;
+    background-color: rgb(65, 156, 221);
     font-weight: 900;
     font-size: 18px;
     padding: 16px;
-    border: 3px solid rgb(200, 0, 0);
+    border: 3px solid #063943;
     border-radius: 6px 0px 0px 6px;
 }
 
@@ -135,7 +135,8 @@ main {
     border-radius: 10px;
 }
 
-.number-button, .operation-button {
+.number-button, 
+.operation-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,6 +149,12 @@ main {
     padding: 0.2em; 
     font-size: clamp(1rem, 4vw, 1.5rem); 
     width: 100%; 
+}
+
+.number-button:hover,
+.operation-button:hover {
+    cursor: pointer;
+    color: rgb(7, 94, 94);
 }
 
 footer {
